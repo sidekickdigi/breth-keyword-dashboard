@@ -1,0 +1,11 @@
+{
+  "name": "breth-keyword-dashboard",
+  "version": "1.0.0",
+  "description": "BRETH Keyword Research Dashboard",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
