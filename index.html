@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRÄTHâ¢ Keyword Research Dashboard â 15 Campaign Keywords</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--primary:#1a2744;--accent:#2e7d32;--accent-light:#e8f5e9;--warn:#f57c00;--warn-light:#fff3e0;--danger:#c62828;--danger-light:#ffebee;--blue:#1565c0;--blue-light:#e3f2fd;--purple:#6a1b9a;--purple-light:#f3e5f5;--bg:#f5f6fa;--card:#fff;--border:#e0e3eb;--text:#1a2744;--muted:#6b7280}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.header{background:linear-gradient(135deg,var(--primary) 0%,#2c3e6b 100%);color:#fff;padding:44px 40px 36px}
+.header h1{font-size:28px;font-weight:700;margin-bottom:4px}
+.header .sub{font-size:15px;opacity:.8}
+.header .meta{display:flex;gap:20px;margin-top:14px;font-size:12px;opacity:.6}
+.container{max-width:1260px;margin:0 auto;padding:28px 20px}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px}
+.kpi{background:var(--card);border-radius:12px;padding:22px 18px;border:1px solid var(--border);text-align:center}
+.kpi .val{font-size:30px;font-weight:700;color:var(--primary)}
+.kpi .lbl{font-size:12px;color:var(--muted);margin-top:2px}
+.kpi.green .val{color:var(--accent)}
+.kpi.orange .val{color:var(--warn)}
+.kpi.blue .val{color:var(--blue)}
+.kpi.red .val{color:var(--danger)}
+.kpi.purple .val{color:var(--purple)}
+.section{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:28px;margin-bottom:20px}
+.section h2{font-size:18px;font-weight:700;margin-bottom:4px;color:var(--primary)}
+.section .desc{color:var(--muted);font-size:13px;margin-bottom:18px}
+.section h3{font-size:15px;font-weight:600;margin:18px 0 8px;color:var(--primary)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bg);text-align:left;padding:10px 12px;font-weight:600;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4px;border-bottom:2px solid var(--border)}
+thead th.r{text-align:right}
+thead th.c{text-align:center}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--border)}
+tbody td.r{text-align:right;font-variant-numeric:tabular-nums}
+tbody td.c{text-align:center}
+tbody tr:hover{background:#f8f9fc}
+tbody tr.zero{background:#fff8f8;color:#999}
+.badge{display:inline-block;padding:2px 9px;border-radius:16px;font-size:10px;font-weight:600}
+.b-green{background:var(--accent-light);color:var(--accent)}
+.b-orange{background:var(--warn-light);color:var(--warn)}
+.b-red{background:var(--danger-light);color:var(--danger)}
+.b-blue{background:var(--blue-light);color:var(--blue)}
+.b-purple{background:var(--purple-light);color:var(--purple)}
+.b-gray{background:#f0f0f0;color:#888}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
+.chart-box{background:var(--bg);border-radius:10px;padding:18px}
+.chart-box h4{font-size:13px;font-weight:600;margin-bottom:10px;color:var(--primary)}
+.trend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0}
+.trend-card{background:var(--bg);border-radius:10px;padding:16px}
+.trend-card h4{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.3px}
+.trend-card .kw{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:2px}
+.trend-card .vol{font-size:22px;font-weight:700;margin-bottom:4px}
+.trend-card .detail{font-size:11px;color:var(--muted)}
+.callout{padding:14px 18px;border-radius:10px;margin:14px 0;font-size:13px}
+.callout-green{background:var(--accent-light);border-left:4px solid var(--accent)}
+.callout-orange{background:var(--warn-light);border-left:4px solid var(--warn)}
+.callout-red{background:var(--danger-light);border-left:4px solid var(--danger)}
+.callout-blue{background:var(--blue-light);border-left:4px solid var(--blue)}
+.callout strong{display:block;margin-bottom:3px}
+.source-tag{display:inline-block;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;margin-left:6px}
+.src-dfs{background:#e3f2fd;color:#1565c0}
+.src-sem{background:#f3e5f5;color:#6a1b9a}
+.footer{text-align:center;padding:28px;color:var(--muted);font-size:11px}
+@media(max-width:768px){.header{padding:28px 16px}.header h1{font-size:22px}.container{padding:16px 10px}.chart-row{grid-template-columns:1fr}.kpi-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>BRÄTHâ¢ Keyword Research Dashboard</h1>
+<div class="sub">15 Selected Campaign Keywords â Verified Data from DataForSEO + Semrush</div>
+<div class="meta">
+<span>Client: Dr. Justin Warcup / BRÄTHâ¢ Method</span>
+<span>Prepared: April 14, 2026</span>
+<span>By: Sidekick Digital</span>
+<span>Sources: DataForSEO Keyword Data API &amp; Semrush Keyword Overview</span>
+</div>
+</div>
+
+<div class="container">
+
+<!-- KPIs -->
+<div class="kpi-row">
+<div class="kpi green"><div class="val">14</div><div class="lbl">Campaign Keywords</div></div>
+<div class="kpi blue"><div class="val">6,670</div><div class="lbl">Total Monthly Volume</div></div>
+<div class="kpi orange"><div class="val">$5.86</div><div class="lbl">Avg CPC (Weighted)</div></div>
+<div class="kpi purple"><div class="val">14</div><div class="lbl">All Have Search Volume</div></div>
+</div>
+
+<!-- Main Keyword Table -->
+<div class="section">
+<h2>All 14 Keywords â Verified Volume & CPC</h2>
+<div class="desc">Data pulled from DataForSEO (primary) and cross-referenced with Semrush. Volume = average monthly US searches. CPC = Google Ads estimated cost-per-click. Monthly trend shows Oct 2025 â Mar 2026.</div>
+
+<table>
+<thead>
+<tr>
+<th class="c">#</th>
+<th>Keyword</th>
+<th class="r">Volume <span class="source-tag src-dfs">DataForSEO</span></th>
+<th class="r">Volume <span class="source-tag src-sem">Semrush</span></th>
+<th class="r">CPC ($)</th>
+<th class="c">Competition</th>
+<th class="c">6mo Trend</th>
+<th class="c">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="c">1</td>
+<td><strong>dental ce course</strong></td>
+<td class="r"><strong>2,400</strong></td>
+<td class="r">140</td>
+<td class="r">$8.58</td>
+<td class="c"><span class="badge b-orange">MEDIUM</span></td>
+<td class="c">2400â1900â1900â2400â2400â1900</td>
+<td class="c"><span class="badge b-green">LIVE</span></td>
+</tr>
+<tr>
+<td class="c">2</td>
+<td><strong>dental continuing education</strong></td>
+<td class="r"><strong>1,000</strong></td>
+<td class="r">â</td>
+<td class="r">$8.95</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">720â480â720â1600â1900â1900</td>
+<td class="c"><span class="badge b-green">LIVE</span></td>
+</tr>
+<tr>
+<td class="c">3</td>
+<td><strong>dental course</strong></td>
+<td class="r"><strong>590</strong></td>
+<td class="r">â</td>
+<td class="r">$14.40</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">480â390â390â480â390â480</td>
+<td class="c"><span class="badge b-orange">WATCH CPC</span></td>
+</tr>
+<tr>
+<td class="c">4</td>
+<td><strong>dental training</strong></td>
+<td class="r"><strong>590</strong></td>
+<td class="r">â</td>
+<td class="r">$15.39</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">590â480â480â590â480â590</td>
+<td class="c"><span class="badge b-red">HIGH CPC</span></td>
+</tr>
+<tr>
+<td class="c">5</td>
+<td><strong>myofunctional therapy training</strong></td>
+<td class="r"><strong>480</strong></td>
+<td class="r">320</td>
+<td class="r">$2.03</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">480â390â480â480â390â480</td>
+<td class="c"><span class="badge b-green">LIVE</span></td>
+</tr>
+<tr>
+<td class="c">6</td>
+<td><strong>myofunctional therapy course</strong></td>
+<td class="r"><strong>480</strong></td>
+<td class="r">â</td>
+<td class="r">$2.03</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">480â390â480â480â390â480</td>
+<td class="c"><span class="badge b-green">LIVE</span></td>
+</tr>
+<tr>
+<td class="c">7</td>
+<td><strong>myofunctional therapy certification</strong></td>
+<td class="r"><strong>320</strong></td>
+<td class="r">â</td>
+<td class="r">$1.50</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">320â320â260â320â390â480</td>
+<td class="c"><span class="badge b-green">LIVE</span></td>
+</tr>
+<tr>
+<td class="c">8</td>
+<td><strong>airway focused dentistry</strong></td>
+<td class="r"><strong>260</strong></td>
+<td class="r">260</td>
+<td class="r">$2.87</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">260â140â210â210â170â260</td>
+<td class="c"><span class="badge b-green">LIVE</span></td>
+</tr>
+<tr>
+<td class="c">9</td>
+<td><strong>pediatric dental continuing education</strong></td>
+<td class="r"><strong>170</strong></td>
+<td class="r">50</td>
+<td class="r">$3.91</td>
+<td class="c"><span class="badge b-orange">MEDIUM</span></td>
+<td class="c">170â260â140â110â90â110</td>
+<td class="c"><span class="badge b-green">LIVE</span></td>
+</tr>
+<tr>
+<td class="c">10</td>
+<td><strong>orofacial myology certification</strong></td>
+<td class="r"><strong>170</strong></td>
+<td class="r">â</td>
+<td class="r">$0.51</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">170â90â70â90â110â90</td>
+<td class="c"><span class="badge b-green">LIVE</span></td>
+</tr>
+<tr>
+<td class="c">11</td>
+<td><strong>pediatric dentistry ce courses</strong></td>
+<td class="r"><strong>110</strong></td>
+<td class="r">â</td>
+<td class="r">$5.59</td>
+<td class="c"><span class="badge b-orange">MEDIUM</span></td>
+<td class="c">140â170â110â90â70â70</td>
+<td class="c"><span class="badge b-green">LIVE</span></td>
+</tr>
+<tr>
+<td class="c">12</td>
+<td><strong>dental seminar</strong></td>
+<td class="r"><strong>50</strong></td>
+<td class="r">â</td>
+<td class="r">â</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">40â40â40â30â30â50</td>
+<td class="c"><span class="badge b-blue">LOW VOL</span></td>
+</tr>
+<tr>
+<td class="c">13</td>
+<td><strong>pediatric dentist course</strong></td>
+<td class="r"><strong>40</strong></td>
+<td class="r">â</td>
+<td class="r">$2.15</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">50â70â30â30â30â20</td>
+<td class="c"><span class="badge b-blue">LOW VOL</span></td>
+</tr>
+<tr>
+<td class="c">14</td>
+<td><strong>pediatric dentistry training</strong></td>
+<td class="r"><strong>20</strong></td>
+<td class="r">â</td>
+<td class="r">â</td>
+<td class="c"><span class="badge b-blue">LOW</span></td>
+<td class="c">20â10â10â20â10â10</td>
+<td class="c"><span class="badge b-blue">LOW VOL</span></td>
+</tr>
+</tbody>
+</table>
+
+<div class="callout callout-blue" style="margin-top:16px">
+<strong>Data Source Note:</strong>
+DataForSEO pulls directly from Google Ads API â these are the volumes Google would show in Keyword Planner. Semrush uses its own clickstream model so numbers often differ. Where both sources returned data, we show both. DataForSEO is the primary source for campaign planning since it reflects actual Google Ads auction data.
+</div>
+</div>
+
+<!-- Charts -->
+<div class="section">
+<h2>Volume & CPC Visualizations</h2>
+<div class="desc">Visual breakdown of your 14 campaign keywords by search volume and cost-per-click.</div>
+
+<div class="chart-row">
+<div class="chart-box">
+<h4>Monthly Search Volume by Keyword</h4>
+<canvas id="volChart" height="380"></canvas>
+</div>
+<div class="chart-box">
+<h4>CPC ($) by Keyword</h4>
+<canvas id="cpcChart" height="380"></canvas>
+</div>
+</div>
+
+<div class="chart-row">
+<div class="chart-box">
+<h4>Volume Distribution by Category</h4>
+<canvas id="catChart" height="280"></canvas>
+</div>
+<div class="chart-box">
+<h4>CPC vs Volume â Efficiency Map</h4>
+<canvas id="bubbleChart" height="280"></canvas>
+</div>
+</div>
+</div>
+
+<!-- Trend Sparklines -->
+<div class="section">
+<h2>6-Month Trend Analysis (Oct 2025 â Mar 2026)</h2>
+<div class="desc">Monthly volume changes for top keywords. Arrows show direction.</div>
+
+<div class="trend-grid">
+<div class="trend-card">
+<h4>Biggest Gainer</h4>
+<div class="kw">dental continuing education</div>
+<div class="vol" style="color:var(--accent)">720 â 1,900 <span style="font-size:14px">â² 164%</span></div>
+<div class="detail">Spiked in Q1 2026 â likely seasonal (CE renewal deadlines)</div>
+<canvas id="trend1" height="60"></canvas>
+</div>
+<div class="trend-card">
+<h4>Steady Performer</h4>
+<div class="kw">myofunctional therapy training</div>
+<div class="vol" style="color:var(--blue)">480 â 480 <span style="font-size:14px">â Stable</span></div>
+<div class="detail">Consistent demand, no seasonality â reliable traffic source</div>
+<canvas id="trend2" height="60"></canvas>
+</div>
+<div class="trend-card">
+<h4>Growing</h4>
+<div class="kw">myofunctional therapy certification</div>
+<div class="vol" style="color:var(--accent)">320 â 480 <span style="font-size:14px">â² 50%</span></div>
+<div class="detail">Up 50% from baseline â growing interest in certification</div>
+<canvas id="trend3" height="60"></canvas>
+</div>
+<div class="trend-card">
+<h4>Declining</h4>
+<div class="kw">pediatric dentistry ce courses</div>
+<div class="vol" style="color:var(--danger)">140 â 70 <span style="font-size:14px">â¼ 50%</span></div>
+<div class="detail">Down from Oct peak â may be seasonal (fall CE season)</div>
+<canvas id="trend4" height="60"></canvas>
+</div>
+<div class="trend-card">
+<h4>Stable High Volume</h4>
+<div class="kw">dental ce course</div>
+<div class="vol" style="color:var(--blue)">2,400 â 1,900 <span style="font-size:14px">â Stable band</span></div>
+<div class="detail">Oscillates 1,900â2,400 â consistent year-round demand</div>
+<canvas id="trend5" height="60"></canvas>
+</div>
+<div class="trend-card">
+<h4>Recovering</h4>
+<div class="kw">airway focused dentistry</div>
+<div class="vol" style="color:var(--accent)">260 â 260 <span style="font-size:14px">â Back to peak</span></div>
+<div class="detail">Dipped to 140 in Nov, recovered to 260 in Mar</div>
+<canvas id="trend6" height="60"></canvas>
+</div>
+</div>
+</div>
+
+<!-- Category Breakdown -->
+<div class="section">
+<h2>Category Breakdown</h2>
+<div class="desc">Your 14 keywords grouped by theme with totals and average CPCs.</div>
+
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th class="c"># Keywords</th>
+<th class="r">Total Volume</th>
+<th class="r">Avg CPC</th>
+<th class="r">% of Total Volume</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dental CE (Broad)</strong></td>
+<td class="c">6</td>
+<td class="r">4,800</td>
+<td class="r">$10.26</td>
+<td class="r">72%</td>
+<td>High volume but broad + expensive. Monitor closely.</td>
+</tr>
+<tr>
+<td><strong>Myofunctional Therapy</strong></td>
+<td class="c">4</td>
+<td class="r">1,450</td>
+<td class="r">$1.52</td>
+<td class="r">22%</td>
+<td>Best value cluster. Low CPC, high professional intent.</td>
+</tr>
+<tr>
+<td><strong>Pediatric Dental CE</strong></td>
+<td class="c">3</td>
+<td class="r">160</td>
+<td class="r">$3.88</td>
+<td class="r">2%</td>
+<td>Low volume but exact audience match. Keep running.</td>
+</tr>
+<tr>
+<td><strong>Airway Dentistry</strong></td>
+<td class="c">1</td>
+<td class="r">260</td>
+<td class="r">$2.87</td>
+<td class="r">4%</td>
+<td>Good intent, good CPC. Consider adding more airway terms.</td>
+</tr>
+<tr style="font-weight:700;background:#f0f4ff">
+<td><strong>TOTAL</strong></td>
+<td class="c">14</td>
+<td class="r">6,670</td>
+<td class="r">$5.86</td>
+<td class="r">100%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- CPC Risk Analysis -->
+<div class="section">
+<h2>CPC Risk Analysis</h2>
+<div class="desc">Flagging keywords where cost-per-click could eat your budget if not managed carefully.</div>
+
+<table>
+<thead>
+<tr>
+<th>Risk Level</th>
+<th>Keywords</th>
+<th class="r">CPC Range</th>
+<th class="r">Combined Volume</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="badge b-red">HIGH RISK</span></td>
+<td>dental training ($15.39), dental course ($14.40)</td>
+<td class="r">$14â$15</td>
+<td class="r">1,180</td>
+<td>Set daily budget caps. Pause if CPA > $200.</td>
+</tr>
+<tr>
+<td><span class="badge b-orange">MODERATE</span></td>
+<td>dental continuing education ($8.95), dental ce course ($8.58), pediatric dentistry ce courses ($5.59)</td>
+<td class="r">$5â$9</td>
+<td class="r">3,510</td>
+<td>Standard monitoring. Expected range for dental CE.</td>
+</tr>
+<tr>
+<td><span class="badge b-green">LOW RISK</span></td>
+<td>All myofunctional + airway + pediatric dental terms</td>
+<td class="r">$0.51â$3.91</td>
+<td class="r">1,980</td>
+<td>Best ROI zone. Maximize spend here first.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="callout callout-orange">
+<strong>Budget Warning:</strong>
+"dental training" at $15.39/click means 10 clicks = $154 with no guarantee of conversion. At that CPC and a 3% conversion rate, you're looking at ~$500 per lead just from that one keyword. Compare to "myofunctional therapy certification" at $1.50/click where 10 clicks = $15. Allocate budget accordingly.
+</div>
+</div>
+
+<!-- Semrush Cross-Reference -->
+<div class="section">
+<h2>Cross-Source Validation</h2>
+<div class="desc">Keywords where we have data from both DataForSEO and Semrush. Differences are normal â each uses different data collection methods.</div>
+
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th class="r">DataForSEO Volume</th>
+<th class="r">Semrush Volume</th>
+<th class="r">DataForSEO CPC</th>
+<th class="r">Semrush CPC</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dental ce course</td>
+<td class="r">2,400</td>
+<td class="r">140</td>
+<td class="r">$8.58</td>
+<td class="r">$4.59</td>
+<td>Big gap â DataForSEO groups singular/plural. Semrush counts separately.</td>
+</tr>
+<tr>
+<td>myofunctional therapy training</td>
+<td class="r">480</td>
+<td class="r">320</td>
+<td class="r">$2.03</td>
+<td class="r">$1.27</td>
+<td>Both confirm volume. Conservative estimate: 320â480/mo.</td>
+</tr>
+<tr>
+<td>airway focused dentistry</td>
+<td class="r">260</td>
+<td class="r">260</td>
+<td class="r">$2.87</td>
+<td class="r">$2.30</td>
+<td>Both sources agree on 260. High confidence.</td>
+</tr>
+<tr>
+<td>pediatric dental continuing education</td>
+<td class="r">170</td>
+<td class="r">50</td>
+<td class="r">$3.91</td>
+<td class="r">$3.37</td>
+<td>DataForSEO higher â likely includes close variants. Real range: 50â170.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+<div class="footer">
+Prepared by Sidekick Digital Â· April 14, 2026 Â· Data sources: DataForSEO Keyword Data API (Google Ads), Semrush Keyword Overview Â· Location: United States Â· All volumes are monthly averages
+</div>
+
+<script>
+const KW_LABELS = [
+  'dental ce course','dental cont. ed','dental course','dental training',
+  'myofunc. training','myofunc. course','myofunc. cert.',
+  'airway focused','ped. dental CE','orofacial cert.',
+  'ped. dentistry CE','dental seminar','ped. dentist course','ped. dent. training'
+];
+const VOLUMES = [2400,1000,590,590,480,480,320,260,170,170,110,50,40,20];
+const CPCS = [8.58,8.95,14.40,15.39,2.03,2.03,1.50,2.87,3.91,0.51,5.59,0,2.15,0];
+
+// Color code by category
+const BAR_COLORS = [
+  '#1565c0','#1565c0','#1565c0','#1565c0', // Dental CE
+  '#2e7d32','#2e7d32','#2e7d32', // Myofunctional
+  '#f57c00', // Airway
+  '#6a1b9a','#2e7d32', // Peds CE, Orofacial
+  '#6a1b9a','#1565c0','#6a1b9a','#6a1b9a' // Peds CE, Dental, Peds
+];
+
+const CPC_COLORS = CPCS.map(c => c >= 10 ? '#c62828' : c >= 5 ? '#f57c00' : c > 0 ? '#2e7d32' : '#ccc');
+
+// Volume Bar Chart
+new Chart(document.getElementById('volChart'), {
+  type:'bar',
+  data:{labels:KW_LABELS,datasets:[{data:VOLUMES,backgroundColor:BAR_COLORS,borderRadius:4}]},
+  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{display:true,text:'Monthly Volume'}},y:{ticks:{font:{size:11}}}}}
+});
+
+// CPC Bar Chart
+new Chart(document.getElementById('cpcChart'), {
+  type:'bar',
+  data:{labels:KW_LABELS,datasets:[{data:CPCS,backgroundColor:CPC_COLORS,borderRadius:4}]},
+  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{display:true,text:'CPC ($)'}},y:{ticks:{font:{size:11}}}}}
+});
+
+// Category Donut
+new Chart(document.getElementById('catChart'), {
+  type:'doughnut',
+  data:{
+    labels:['Dental CE (Broad)','Myofunctional Therapy','Pediatric Dental CE','Airway Dentistry'],
+    datasets:[{data:[4800,1450,160,260],backgroundColor:['#1565c0','#2e7d32','#6a1b9a','#f57c00'],borderWidth:2,borderColor:'#fff'}]
+  },
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}
+});
+
+// Bubble Chart: CPC vs Volume
+new Chart(document.getElementById('bubbleChart'), {
+  type:'bubble',
+  data:{
+    datasets:[
+      {label:'Dental CE',data:[{x:8.58,y:2400,r:18},{x:8.95,y:1000,r:14},{x:14.40,y:590,r:10},{x:15.39,y:590,r:10},{x:0,y:50,r:5},{x:5.59,y:110,r:7}],backgroundColor:'rgba(21,101,192,0.4)',borderColor:'#1565c0'},
+      {label:'Myofunctional',data:[{x:2.03,y:480,r:12},{x:2.03,y:480,r:12},{x:1.50,y:320,r:10},{x:0.51,y:170,r:8}],backgroundColor:'rgba(46,125,50,0.4)',borderColor:'#2e7d32'},
+      {label:'Airway',data:[{x:2.87,y:260,r:9}],backgroundColor:'rgba(245,124,0,0.4)',borderColor:'#f57c00'},
+      {label:'Pediatric CE',data:[{x:3.91,y:170,r:8},{x:2.15,y:40,r:5},{x:0,y:20,r:4}],backgroundColor:'rgba(106,27,154,0.4)',borderColor:'#6a1b9a'}
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{x:{title:{display:true,text:'CPC ($)'},beginAtZero:true},y:{title:{display:true,text:'Monthly Volume'},beginAtZero:true}}}
+});
+
+// Trend mini-charts
+function miniTrend(id, data, color) {
+  new Chart(document.getElementById(id), {
+    type:'line',
+    data:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],datasets:[{data:data,borderColor:color,backgroundColor:color+'22',fill:true,tension:0.3,pointRadius:3,pointBackgroundColor:color}]},
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{display:true,ticks:{font:{size:9}}},y:{display:false}},elements:{line:{borderWidth:2}}}
+  });
+}
+miniTrend('trend1',[720,480,720,1600,1900,1900],'#2e7d32');
+miniTrend('trend2',[480,390,320,480,390,480],'#1565c0');
+miniTrend('trend3',[320,320,260,320,390,480],'#2e7d32');
+miniTrend('trend4',[140,170,110,90,70,70],'#c62828');
+miniTrend('trend5',[2400,1900,1900,2400,2400,1900],'#1565c0');
+miniTrend('trend6',[260,140,210,210,170,260],'#f57c00');
+</script>
+
+</body>
+</html>
