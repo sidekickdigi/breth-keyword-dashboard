@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BR&#274;TH&trade; Keyword Research Dashboard &mdash; 14 Campaign Keywords</title>
+<title>BRĒTH™ Keyword Research Dashboard v2 — 41 Campaign Keywords</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root{--primary:#1a2744;--accent:#2e7d32;--accent-light:#e8f5e9;--warn:#f57c00;--warn-light:#fff3e0;--danger:#c62828;--danger-light:#ffebee;--blue:#1565c0;--blue-light:#e3f2fd;--purple:#6a1b9a;--purple-light:#f3e5f5;--bg:#f5f6fa;--card:#fff;--border:#e0e3eb;--text:#1a2744;--muted:#6b7280}
@@ -12,7 +12,8 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .header{background:linear-gradient(135deg,var(--primary) 0%,#2c3e6b 100%);color:#fff;padding:44px 40px 36px}
 .header h1{font-size:28px;font-weight:700;margin-bottom:4px}
 .header .sub{font-size:15px;opacity:.8}
-.header .meta{display:flex;gap:20px;margin-top:14px;font-size:12px;opacity:.6}
+.header .meta{display:flex;gap:20px;margin-top:14px;font-size:12px;opacity:.6;flex-wrap:wrap}
+.header .v2-tag{display:inline-block;background:#2e7d32;color:#fff;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:700;margin-left:10px;vertical-align:middle}
 .container{max-width:1260px;margin:0 auto;padding:28px 20px}
 .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px}
 .kpi{background:var(--card);border-radius:12px;padding:22px 18px;border:1px solid var(--border);text-align:center}
@@ -36,6 +37,8 @@ tbody td.r{text-align:right;font-variant-numeric:tabular-nums}
 tbody td.c{text-align:center}
 tbody tr:hover{background:#f8f9fc}
 tbody tr.zero{background:#fff8f8;color:#999}
+tbody tr.ag-header{background:#eef2f9;font-weight:700}
+tbody tr.ag-header td{padding:8px 12px;color:var(--primary);font-size:12px;text-transform:uppercase;letter-spacing:.4px}
 .badge{display:inline-block;padding:2px 9px;border-radius:16px;font-size:10px;font-weight:600}
 .b-green{background:var(--accent-light);color:var(--accent)}
 .b-orange{background:var(--warn-light);color:var(--warn)}
@@ -43,6 +46,7 @@ tbody tr.zero{background:#fff8f8;color:#999}
 .b-blue{background:var(--blue-light);color:var(--blue)}
 .b-purple{background:var(--purple-light);color:var(--purple)}
 .b-gray{background:#f0f0f0;color:#888}
+.b-new{background:#fff8e1;color:#e65100;border:1px solid #ffcc80}
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
 .chart-box{background:var(--bg);border-radius:10px;padding:18px}
 .chart-box h4{font-size:13px;font-weight:600;margin-bottom:10px;color:var(--primary)}
@@ -57,22 +61,31 @@ tbody tr.zero{background:#fff8f8;color:#999}
 .callout-orange{background:var(--warn-light);border-left:4px solid var(--warn)}
 .callout-red{background:var(--danger-light);border-left:4px solid var(--danger)}
 .callout-blue{background:var(--blue-light);border-left:4px solid var(--blue)}
+.callout-purple{background:var(--purple-light);border-left:4px solid var(--purple)}
 .callout strong{display:block;margin-bottom:3px}
 .source-tag{display:inline-block;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;margin-left:6px}
 .src-dfs{background:#e3f2fd;color:#1565c0}
 .src-sem{background:#f3e5f5;color:#6a1b9a}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.compare-card{background:var(--bg);border-radius:10px;padding:20px;border:1px solid var(--border)}
+.compare-card h4{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.compare-card .num{font-size:28px;font-weight:700;color:var(--primary);margin-bottom:2px}
+.compare-card .lbl{font-size:12px;color:var(--muted);margin-bottom:10px}
+.compare-card ul{list-style:none;padding:0;margin:8px 0 0}
+.compare-card li{font-size:12px;padding:4px 0;color:var(--text)}
+.compare-card li::before{content:"• ";color:var(--muted)}
 .footer{text-align:center;padding:28px;color:var(--muted);font-size:11px}
-@media(max-width:768px){.header{padding:28px 16px}.header h1{font-size:22px}.container{padding:16px 10px}.chart-row{grid-template-columns:1fr}.kpi-row{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.header{padding:28px 16px}.header h1{font-size:22px}.container{padding:16px 10px}.chart-row{grid-template-columns:1fr}.compare-grid{grid-template-columns:1fr}.kpi-row{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
 <div class="header">
-<h1>BR&#274;TH&trade; Keyword Research Dashboard</h1>
-<div class="sub">14 Selected Campaign Keywords &mdash; Verified Data from DataForSEO + Semrush</div>
+<h1>BRĒTH™ Keyword Research Dashboard <span class="v2-tag">v2</span></h1>
+<div class="sub">41 Campaign Keywords — 6 Ad Groups — Verified Data from DataForSEO + Semrush</div>
 <div class="meta">
-<span>Client: Dr. Justin Warcup / BR&#274;TH&trade; Method</span>
-<span>Prepared: April 14, 2026</span>
+<span>Client: Dr. Justin Warcup / BRĒTH™ Method</span>
+<span>Prepared: April 16, 2026</span>
 <span>By: Sidekick Digital</span>
 <span>Sources: DataForSEO Keyword Data API &amp; Semrush Keyword Overview</span>
 </div>
@@ -80,18 +93,56 @@ tbody tr.zero{background:#fff8f8;color:#999}
 
 <div class="container">
 
-<!-- KPIs -->
-<div class="kpi-row">
-<div class="kpi green"><div class="val">14</div><div class="lbl">Campaign Keywords</div></div>
-<div class="kpi blue"><div class="val">6,670</div><div class="lbl">Total Monthly Volume</div></div>
-<div class="kpi orange"><div class="val">$5.86</div><div class="lbl">Avg CPC (Weighted)</div></div>
-<div class="kpi purple"><div class="val">14</div><div class="lbl">All Have Search Volume</div></div>
+<div class="section">
+<h2>What changed from v1 → v2</h2>
+<div class="desc">Client feedback (April 16): v1 was ~80% weighted to generic CE. v2 targets practice-growth-minded dentists and airway-curious clinicians — the same audience as Scott Leune's CEO coaching — and frames BRĒTH as a revenue-generating procedure that happens to come with CE.</div>
+
+<div class="compare-grid">
+<div class="compare-card">
+<h4>v1 — April 14</h4>
+<div class="num">15</div>
+<div class="lbl">keywords · 6,670 monthly volume · $5.86 avg CPC</div>
+<ul>
+<li>Effectively 1 audience: CE renewal seekers</li>
+<li>0 practice-growth terms</li>
+<li>0 clinical education terms</li>
+<li>Only 1 airway keyword</li>
+<li>4 pediatric keywords</li>
+</ul>
+</div>
+<div class="compare-card" style="border:2px solid var(--accent)">
+<h4 style="color:var(--accent)">v2 — April 16</h4>
+<div class="num" style="color:var(--accent)">41</div>
+<div class="lbl">keywords · 14,330 monthly volume · $5.62 avg CPC</div>
+<ul>
+<li>6 distinct audiences across 6 ad groups</li>
+<li>+7 practice-growth / CEO-coaching overlap</li>
+<li>+6 clinical education terms</li>
+<li>+8 airway terms (1,600/mo airway orthodontics unlock)</li>
+<li>+9 pediatric terms (incl. pediatric airway)</li>
+</ul>
+</div>
 </div>
 
-<!-- Main Keyword Table -->
+<div class="callout callout-orange">
+<strong>⚠ Reality check on client requests</strong>
+Two buckets Justin asked for have near-zero direct search volume in Google Keyword Planner:
+<strong style="display:inline;font-weight:700">Add Procedures to Practice</strong> ("add procedures to dental practice," "new dental procedures to offer," "expand dental services") and parts of
+<strong style="display:inline;font-weight:700">Clinical Education</strong> ("clinical continuing education dental," "dental clinical education," "dental clinical course"). Dentists feel the pain but don't type those exact phrases. We kept them flagged in the list so exact-match still fires if anyone searches, and we captured the intent via higher-volume proxies in AG2 (Practice Growth) and AG1 (dental ce academy, live dental ce).
+</div>
+</div>
+
+<div class="kpi-row">
+<div class="kpi green"><div class="val">41</div><div class="lbl">Campaign Keywords</div></div>
+<div class="kpi blue"><div class="val">14,330</div><div class="lbl">Total Monthly Volume</div></div>
+<div class="kpi orange"><div class="val">$5.62</div><div class="lbl">Avg CPC (Weighted)</div></div>
+<div class="kpi purple"><div class="val">28</div><div class="lbl">Have Search Volume</div></div>
+<div class="kpi red"><div class="val">13</div><div class="lbl">Zero / No Data</div></div>
+</div>
+
 <div class="section">
-<h2>All 14 Keywords &mdash; Verified Volume & CPC</h2>
-<div class="desc">Data pulled from DataForSEO (primary) and cross-referenced with Semrush. Volume = average monthly US searches. CPC = Google Ads estimated cost-per-click. Monthly trend shows Oct 2025 &rarr; Mar 2026.</div>
+<h2>All 41 Keywords — By Ad Group</h2>
+<div class="desc">Data pulled from DataForSEO (primary) and cross-referenced with Semrush. Volume = average monthly US searches. CPC = Google Ads estimated cost-per-click. Monthly trend shows Oct 2025 → Mar 2026. NEW = keyword not in v1.</div>
 
 <table>
 <thead>
@@ -103,638 +154,258 @@ tbody tr.zero{background:#fff8f8;color:#999}
 <th class="r">CPC ($)</th>
 <th class="c">Competition</th>
 <th class="c">6mo Trend</th>
+<th class="c">Status</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td class="c">1</td>
-<td><strong>dental ce course</strong></td>
-<td class="r"><strong>2,400</strong></td>
-<td class="r">140</td>
-<td class="r">$8.58</td>
-<td class="c"><span class="badge b-orange">MEDIUM</span></td>
-<td class="c">2400&rarr;1900&rarr;1900&rarr;2400&rarr;2400&rarr;1900</td>
-</tr>
-<tr>
-<td class="c">2</td>
-<td><strong>dental continuing education</strong></td>
-<td class="r"><strong>1,000</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">$8.95</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">720&rarr;480&rarr;720&rarr;1600&rarr;1900&rarr;1900</td>
-</tr>
-<tr>
-<td class="c">3</td>
-<td><strong>dental course</strong></td>
-<td class="r"><strong>590</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">$14.40</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">480&rarr;390&rarr;390&rarr;480&rarr;390&rarr;480</td>
-</tr>
-<tr>
-<td class="c">4</td>
-<td><strong>dental training</strong></td>
-<td class="r"><strong>590</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">$15.39</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">590&rarr;480&rarr;480&rarr;590&rarr;480&rarr;590</td>
-</tr>
-<tr>
-<td class="c">5</td>
-<td><strong>myofunctional therapy training</strong></td>
-<td class="r"><strong>480</strong></td>
-<td class="r">320</td>
-<td class="r">$2.03</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">480&rarr;390&rarr;480&rarr;480&rarr;390&rarr;480</td>
-</tr>
-<tr>
-<td class="c">6</td>
-<td><strong>myofunctional therapy course</strong></td>
-<td class="r"><strong>480</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">$2.03</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">480&rarr;390&rarr;480&rarr;480&rarr;390&rarr;480</td>
-</tr>
-<tr>
-<td class="c">7</td>
-<td><strong>myofunctional therapy certification</strong></td>
-<td class="r"><strong>320</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">$1.50</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">320&rarr;320&rarr;260&rarr;320&rarr;390&rarr;480</td>
-</tr>
-<tr>
-<td class="c">8</td>
-<td><strong>airway focused dentistry</strong></td>
-<td class="r"><strong>260</strong></td>
-<td class="r">260</td>
-<td class="r">$2.87</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">260&rarr;140&rarr;210&rarr;210&rarr;170&rarr;260</td>
-</tr>
-<tr>
-<td class="c">9</td>
-<td><strong>pediatric dental continuing education</strong></td>
-<td class="r"><strong>170</strong></td>
-<td class="r">50</td>
-<td class="r">$3.91</td>
-<td class="c"><span class="badge b-orange">MEDIUM</span></td>
-<td class="c">170&rarr;260&rarr;140&rarr;110&rarr;90&rarr;110</td>
-</tr>
-<tr>
-<td class="c">10</td>
-<td><strong>orofacial myology certification</strong></td>
-<td class="r"><strong>170</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">$0.51</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">170&rarr;90&rarr;70&rarr;90&rarr;110&rarr;90</td>
-</tr>
-<tr>
-<td class="c">11</td>
-<td><strong>pediatric dentistry ce courses</strong></td>
-<td class="r"><strong>110</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">$5.59</td>
-<td class="c"><span class="badge b-orange">MEDIUM</span></td>
-<td class="c">140&rarr;170&rarr;110&rarr;90&rarr;70&rarr;70</td>
-</tr>
-<tr>
-<td class="c">12</td>
-<td><strong>dental seminar</strong></td>
-<td class="r"><strong>50</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">40&rarr;40&rarr;40&rarr;30&rarr;30&rarr;50</td>
-</tr>
-<tr>
-<td class="c">13</td>
-<td><strong>pediatric dentist course</strong></td>
-<td class="r"><strong>40</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">$2.15</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">50&rarr;70&rarr;30&rarr;30&rarr;30&rarr;20</td>
-</tr>
-<tr>
-<td class="c">14</td>
-<td><strong>pediatric dentistry training</strong></td>
-<td class="r"><strong>20</strong></td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
-<td class="c"><span class="badge b-blue">LOW</span></td>
-<td class="c">20&rarr;10&rarr;10&rarr;20&rarr;10&rarr;10</td>
-</tr>
+
+<tr class="ag-header"><td colspan="8">AG1 — Clinical Education (6 keywords · NEW audience bucket)</td></tr>
+
+<tr><td class="c">1</td><td><strong>dental ce academy</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>2,400</strong></td><td class="r">—</td><td class="r">$5.53</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">2400→1900→2400→2900→2900→2400</td><td class="c"><span class="badge b-green">TOP PICK</span></td></tr>
+<tr><td class="c">2</td><td><strong>live dental ce</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>320</strong></td><td class="r">—</td><td class="r">$5.91</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">320→320→390→390→390→210</td><td class="c"><span class="badge b-green">ADD</span></td></tr>
+<tr><td class="c">3</td><td><strong>hands on dental ce courses</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>50</strong></td><td class="r">—</td><td class="r">$9.93</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">50→30→30→70→40→50</td><td class="c"><span class="badge b-blue">LOW VOL</span></td></tr>
+<tr><td class="c">4</td><td><strong>hands on dental ce</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>10</strong></td><td class="r">—</td><td class="r">$4.15</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">10→10→10→10→10→10</td><td class="c"><span class="badge b-blue">LOW VOL</span></td></tr>
+<tr><td class="c">5</td><td><strong>clinical ce for dentists</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>10</strong></td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-red">HIGH</span></td><td class="c">0→0→0→0→10→10</td><td class="c"><span class="badge b-blue">LOW VOL</span></td></tr>
+<tr><td class="c">6</td><td><strong>clinical dental training</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>10</strong></td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">0→10→10→10→10→10</td><td class="c"><span class="badge b-blue">LOW VOL</span></td></tr>
+
+<tr class="ag-header"><td colspan="8">AG2 — Practice Growth / CEO Coaching Overlap (7 keywords · NEW audience bucket)</td></tr>
+
+<tr><td class="c">7</td><td><strong>dental practice management course</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>210</strong></td><td class="r">—</td><td class="r">$8.70</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">140→140→210→210→140→320</td><td class="c"><span class="badge b-green">TOP PICK</span></td></tr>
+<tr><td class="c">8</td><td><strong>dental practice coaching</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>90</strong></td><td class="r">—</td><td class="r">$20.97</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">70→40→30→50→50→70</td><td class="c"><span class="badge b-orange">WATCH CPC</span></td></tr>
+<tr><td class="c">9</td><td><strong>dental practice growth</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>70</strong></td><td class="r">—</td><td class="r">$53.93</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">20→10→20→50→30→50</td><td class="c"><span class="badge b-red">HIGH CPC</span></td></tr>
+<tr><td class="c">10</td><td><strong>dental practice profitability</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>30</strong></td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">40→20→20→40→40→30</td><td class="c"><span class="badge b-green">ADD</span></td></tr>
+<tr><td class="c">11</td><td><strong>grow dental practice</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>20</strong></td><td class="r">—</td><td class="r">$30.01</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">10→10→10→10→10→10</td><td class="c"><span class="badge b-orange">WATCH CPC</span></td></tr>
+<tr><td class="c">12</td><td><strong>increase dental practice revenue</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>10</strong></td><td class="r">—</td><td class="r">$38.43</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">10→10→10→10→10→10</td><td class="c"><span class="badge b-red">HIGH CPC</span></td></tr>
+<tr><td class="c">13</td><td><strong>dental practice expansion</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>10</strong></td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-gray">—</span></td><td class="c">10→10→10→10→10→0</td><td class="c"><span class="badge b-blue">LOW VOL</span></td></tr>
+
+<tr class="ag-header"><td colspan="8">AG3 — Pediatric (8 keywords · 4 kept from v1, 4 new)</td></tr>
+
+<tr><td class="c">14</td><td><strong>pediatric airway dentistry</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>320</strong></td><td class="r">—</td><td class="r">$7.21</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">260→320→260→320→320→390</td><td class="c"><span class="badge b-green">TOP PICK</span></td></tr>
+<tr><td class="c">15</td><td><strong>pediatric dental continuing education</strong></td><td class="r"><strong>170</strong></td><td class="r">50</td><td class="r">$3.91</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">170→260→140→110→90→110</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">16</td><td><strong>pediatric dentistry ce courses</strong></td><td class="r"><strong>110</strong></td><td class="r">—</td><td class="r">$5.59</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">140→170→110→90→70→70</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">17</td><td><strong>pediatric sleep disordered breathing</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>70</strong></td><td class="r">—</td><td class="r">$3.14</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">30→40→30→90→110→170</td><td class="c"><span class="badge b-green">ADD</span></td></tr>
+<tr><td class="c">18</td><td><strong>pediatric sleep apnea treatment</strong> <span class="badge b-new">NEW</span></td><td class="r">—</td><td class="r">70</td><td class="r">—</td><td class="c"><span class="badge b-gray">—</span></td><td class="c">—</td><td class="c"><span class="badge b-purple">SEM ONLY</span></td></tr>
+<tr><td class="c">19</td><td><strong>pediatric dentist course</strong></td><td class="r"><strong>40</strong></td><td class="r">—</td><td class="r">$2.15</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">50→70→30→30→30→20</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">20</td><td><strong>pediatric dentistry training</strong></td><td class="r"><strong>20</strong></td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">20→10→10→20→10→10</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">21</td><td><strong>pediatric dentistry conference</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>20</strong></td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">20→20→10→30→30→30</td><td class="c"><span class="badge b-blue">LOW VOL</span></td></tr>
+
+<tr class="ag-header"><td colspan="8">AG4 — Airway (8 keywords · 1 kept from v1, 7 new — MAJOR EXPANSION)</td></tr>
+
+<tr><td class="c">22</td><td><strong>airway orthodontics</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>1,600</strong></td><td class="r">—</td><td class="r">$5.73</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">1600→1900→1900→1900→1900→2400</td><td class="c"><span class="badge b-green">★ TOP PICK</span></td></tr>
+<tr><td class="c">23</td><td><strong>mouth breathing treatment</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>1,600</strong></td><td class="r">—</td><td class="r">$1.29</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">1600→1300→1000→1000→1000→1000</td><td class="c"><span class="badge b-green">★ TOP PICK</span></td></tr>
+<tr><td class="c">24</td><td><strong>airway focused orthodontics</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>390</strong></td><td class="r">—</td><td class="r">$6.79</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">320→260→260→480→590→590</td><td class="c"><span class="badge b-green">TOP PICK</span></td></tr>
+<tr><td class="c">25</td><td><strong>airway focused dentistry</strong></td><td class="r"><strong>260</strong></td><td class="r">260</td><td class="r">$2.87</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">260→140→210→210→170→260</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">26</td><td><strong>airway centric dentistry</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>50</strong></td><td class="r">—</td><td class="r">$6.25</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">40→40→50→50→30→70</td><td class="c"><span class="badge b-green">ADD</span></td></tr>
+<tr><td class="c">27</td><td><strong>sleep dentistry course</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>40</strong></td><td class="r">—</td><td class="r">$2.56</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">20→10→20→30→10→20</td><td class="c"><span class="badge b-blue">LOW VOL</span></td></tr>
+<tr><td class="c">28</td><td><strong>sleep dentistry ce</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>20</strong></td><td class="r">—</td><td class="r">$3.86</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">10→10→10→10→10→10</td><td class="c"><span class="badge b-blue">LOW VOL</span></td></tr>
+<tr class="zero"><td class="c">29</td><td><strong>airway dentistry course</strong> <span class="badge b-new">NEW</span></td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-gray">—</span></td><td class="c">no data</td><td class="c"><span class="badge b-gray">EXACT MATCH</span></td></tr>
+
+<tr class="ag-header"><td colspan="8">AG5 — Myofunctional / Core CE (7 keywords · v1 winners, kept)</td></tr>
+
+<tr><td class="c">30</td><td><strong>dental ce course</strong></td><td class="r"><strong>2,400</strong></td><td class="r">140</td><td class="r">$8.58</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">2400→1900→1900→2400→2400→1900</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">31</td><td><strong>dental ce courses</strong> <span class="badge b-new">NEW</span></td><td class="r"><strong>2,400</strong></td><td class="r">1,600</td><td class="r">$8.58</td><td class="c"><span class="badge b-orange">MEDIUM</span></td><td class="c">2400→1900→1900→2400→2400→1900</td><td class="c"><span class="badge b-green">ADD (plural)</span></td></tr>
+<tr><td class="c">32</td><td><strong>dental continuing education</strong></td><td class="r"><strong>1,000</strong></td><td class="r">—</td><td class="r">$8.95</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">720→480→720→1600→1900→1900</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">33</td><td><strong>myofunctional therapy training</strong></td><td class="r"><strong>480</strong></td><td class="r">320</td><td class="r">$2.03</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">480→390→480→480→390→480</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">34</td><td><strong>myofunctional therapy course</strong></td><td class="r"><strong>480</strong></td><td class="r">—</td><td class="r">$2.03</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">480→390→480→480→390→480</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">35</td><td><strong>myofunctional therapy certification</strong></td><td class="r"><strong>320</strong></td><td class="r">—</td><td class="r">$1.50</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">320→320→260→320→390→480</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+<tr><td class="c">36</td><td><strong>orofacial myology certification</strong></td><td class="r"><strong>170</strong></td><td class="r">—</td><td class="r">$0.51</td><td class="c"><span class="badge b-blue">LOW</span></td><td class="c">170→90→70→90→110→90</td><td class="c"><span class="badge b-green">LIVE</span></td></tr>
+
+<tr class="ag-header"><td colspan="8">AG6 — Intent-Gap / Exact-Match Placeholders (5 keywords · client-requested, kept for exact-match coverage)</td></tr>
+
+<tr class="zero"><td class="c">37</td><td><strong>myofunctional therapy CE</strong></td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-gray">—</span></td><td class="c">no data</td><td class="c"><span class="badge b-gray">EXACT MATCH</span></td></tr>
+<tr class="zero"><td class="c">38</td><td><strong>add procedures to dental practice</strong> <span class="badge b-new">NEW</span></td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-gray">—</span></td><td class="c">no data</td><td class="c"><span class="badge b-gray">EXACT MATCH</span></td></tr>
+<tr class="zero"><td class="c">39</td><td><strong>new dental procedures to offer</strong> <span class="badge b-new">NEW</span></td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-gray">—</span></td><td class="c">no data</td><td class="c"><span class="badge b-gray">EXACT MATCH</span></td></tr>
+<tr class="zero"><td class="c">40</td><td><strong>expand dental services</strong> <span class="badge b-new">NEW</span></td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-gray">—</span></td><td class="c">no data</td><td class="c"><span class="badge b-gray">EXACT MATCH</span></td></tr>
+<tr class="zero"><td class="c">41</td><td><strong>high revenue dental procedures</strong> <span class="badge b-new">NEW</span></td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="c"><span class="badge b-gray">—</span></td><td class="c">no data</td><td class="c"><span class="badge b-gray">EXACT MATCH</span></td></tr>
+
 </tbody>
 </table>
 
 <div class="callout callout-blue" style="margin-top:16px">
 <strong>Data Source Note:</strong>
-DataForSEO pulls directly from Google Ads API &mdash; these are the volumes Google would show in Keyword Planner. Semrush uses its own clickstream model so numbers often differ. Where both sources returned data, we show both. DataForSEO is the primary source for campaign planning since it reflects actual Google Ads auction data.
+DataForSEO pulls directly from Google Ads API — these are the volumes Google would show in Keyword Planner. Semrush uses its own clickstream model so numbers often differ. <strong style="display:inline">EXACT MATCH</strong> status means the keyword returned null in both tools but is kept in the campaign so exact-match still fires if a dentist types it — useful for long-tail capture that aggregated tools don't show.
 </div>
 </div>
 
-<!-- Charts -->
 <div class="section">
-<h2>Volume & CPC Visualizations</h2>
-<div class="desc">Visual breakdown of your 14 campaign keywords by search volume and cost-per-click.</div>
-
-<div class="chart-row">
-<div class="chart-box">
-<h4>Monthly Search Volume by Keyword</h4>
-<canvas id="volChart" height="380"></canvas>
-</div>
-<div class="chart-box">
-<h4>CPC ($) by Keyword</h4>
-<canvas id="cpcChart" height="380"></canvas>
-</div>
-</div>
-
-<div class="chart-row">
-<div class="chart-box">
-<h4>Volume Distribution by Category</h4>
-<canvas id="catChart" height="280"></canvas>
-</div>
-<div class="chart-box">
-<h4>CPC vs Volume &mdash; Efficiency Map</h4>
-<canvas id="bubbleChart" height="280"></canvas>
-</div>
-</div>
-</div>
-
-<!-- Trend Sparklines -->
-<div class="section">
-<h2>6-Month Trend Analysis (Oct 2025 &rarr; Mar 2026)</h2>
-<div class="desc">Monthly volume changes for top keywords. Arrows show direction.</div>
-
-<div class="trend-grid">
-<div class="trend-card">
-<h4>Biggest Gainer</h4>
-<div class="kw">dental continuing education</div>
-<div class="vol" style="color:var(--accent)">720 &rarr; 1,900 <span style="font-size:14px">&#9650; 164%</span></div>
-<div class="detail">Spiked in Q1 2026 &mdash; likely seasonal (CE renewal deadlines)</div>
-<canvas id="trend1" height="60"></canvas>
-</div>
-<div class="trend-card">
-<h4>Steady Performer</h4>
-<div class="kw">myofunctional therapy training</div>
-<div class="vol" style="color:var(--blue)">480 &rarr; 480 <span style="font-size:14px">&rarr; Stable</span></div>
-<div class="detail">Consistent demand, no seasonality &mdash; reliable traffic source</div>
-<canvas id="trend2" height="60"></canvas>
-</div>
-<div class="trend-card">
-<h4>Growing</h4>
-<div class="kw">myofunctional therapy certification</div>
-<div class="vol" style="color:var(--accent)">320 &rarr; 480 <span style="font-size:14px">&#9650; 50%</span></div>
-<div class="detail">Up 50% from baseline &mdash; growing interest in certification</div>
-<canvas id="trend3" height="60"></canvas>
-</div>
-<div class="trend-card">
-<h4>Declining</h4>
-<div class="kw">pediatric dentistry ce courses</div>
-<div class="vol" style="color:var(--danger)">140 &rarr; 70 <span style="font-size:14px">&#9660; 50%</span></div>
-<div class="detail">Down from Oct peak &mdash; may be seasonal (fall CE season)</div>
-<canvas id="trend4" height="60"></canvas>
-</div>
-<div class="trend-card">
-<h4>Stable High Volume</h4>
-<div class="kw">dental ce course</div>
-<div class="vol" style="color:var(--blue)">2,400 &rarr; 1,900 <span style="font-size:14px">&rarr; Stable band</span></div>
-<div class="detail">Oscillates 1,900&ndash;2,400 &mdash; consistent year-round demand</div>
-<canvas id="trend5" height="60"></canvas>
-</div>
-<div class="trend-card">
-<h4>Recovering</h4>
-<div class="kw">airway focused dentistry</div>
-<div class="vol" style="color:var(--accent)">260 &rarr; 260 <span style="font-size:14px">&rarr; Back to peak</span></div>
-<div class="detail">Dipped to 140 in Nov, recovered to 260 in Mar</div>
-<canvas id="trend6" height="60"></canvas>
-</div>
-</div>
-</div>
-
-<!-- Category Breakdown -->
-<div class="section">
-<h2>Category Breakdown</h2>
-<div class="desc">Your 14 keywords grouped by theme with totals and average CPCs.</div>
+<h2>Ad Group Summary</h2>
+<div class="desc">Volume and CPC totals for each of the 6 v2 ad groups with strategic commentary.</div>
 
 <table>
 <thead>
 <tr>
-<th>Category</th>
+<th>Ad Group</th>
 <th class="c"># Keywords</th>
 <th class="r">Total Volume</th>
 <th class="r">Avg CPC</th>
-<th class="r">% of Total Volume</th>
-<th>Verdict</th>
+<th class="r">% of Total</th>
+<th>Strategic Note</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><strong>Dental CE (Broad)</strong></td>
-<td class="c">6</td>
-<td class="r">4,800</td>
-<td class="r">$10.26</td>
-<td class="r">72%</td>
-<td>High volume but broad + expensive. Monitor closely.</td>
-</tr>
-<tr>
-<td><strong>Myofunctional Therapy</strong></td>
-<td class="c">4</td>
-<td class="r">1,450</td>
-<td class="r">$1.52</td>
-<td class="r">22%</td>
-<td>Best value cluster. Low CPC, high professional intent.</td>
-</tr>
-<tr>
-<td><strong>Pediatric Dental CE</strong></td>
-<td class="c">3</td>
-<td class="r">160</td>
-<td class="r">$3.88</td>
-<td class="r">2%</td>
-<td>Low volume but exact audience match. Keep running.</td>
-</tr>
-<tr>
-<td><strong>Airway Dentistry</strong></td>
-<td class="c">1</td>
-<td class="r">260</td>
-<td class="r">$2.87</td>
-<td class="r">4%</td>
-<td>Good intent, good CPC. Consider adding more airway terms.</td>
-</tr>
-<tr style="font-weight:700;background:#f0f4ff">
-<td><strong>TOTAL</strong></td>
-<td class="c">14</td>
-<td class="r">6,670</td>
-<td class="r">$5.86</td>
-<td class="r">100%</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<!-- CPC Risk Analysis -->
-<div class="section">
-<h2>CPC Risk Analysis</h2>
-<div class="desc">Flagging keywords where cost-per-click could eat your budget if not managed carefully.</div>
-
-<table>
-<thead>
-<tr>
-<th>Risk Level</th>
-<th>Keywords</th>
-<th class="r">CPC Range</th>
-<th class="r">Combined Volume</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="badge b-red">HIGH RISK</span></td>
-<td>dental training ($15.39), dental course ($14.40)</td>
-<td class="r">$14&ndash;$15</td>
-<td class="r">1,180</td>
-<td>Set daily budget caps. Pause if CPA > $200.</td>
-</tr>
-<tr>
-<td><span class="badge b-orange">MODERATE</span></td>
-<td>dental continuing education ($8.95), dental ce course ($8.58), pediatric dentistry ce courses ($5.59)</td>
-<td class="r">$5&ndash;$9</td>
-<td class="r">3,510</td>
-<td>Standard monitoring. Expected range for dental CE.</td>
-</tr>
-<tr>
-<td><span class="badge b-green">LOW RISK</span></td>
-<td>All myofunctional + airway + pediatric dental terms</td>
-<td class="r">$0.51&ndash;$3.91</td>
-<td class="r">1,980</td>
-<td>Best ROI zone. Maximize spend here first.</td>
-</tr>
-</tbody>
-</table>
-
-<div class="callout callout-orange">
-<strong>Budget Warning:</strong>
-"dental training" at $15.39/click means 10 clicks = $154 with no guarantee of conversion. At that CPC and a 3% conversion rate, you're looking at ~$500 per lead just from that one keyword. Compare to "myofunctional therapy certification" at $1.50/click where 10 clicks = $15. Allocate budget accordingly.
-</div>
-</div>
-
-<!-- Semrush Cross-Reference -->
-<div class="section">
-<h2>Cross-Source Validation</h2>
-<div class="desc">Keywords where we have data from both DataForSEO and Semrush. Differences are normal &mdash; each uses different data collection methods.</div>
-
-<table>
-<thead>
-<tr>
-<th>Keyword</th>
-<th class="r">DataForSEO Volume</th>
-<th class="r">Semrush Volume</th>
-<th class="r">DataForSEO CPC</th>
-<th class="r">Semrush CPC</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>dental ce course</td>
-<td class="r">2,400</td>
-<td class="r">140</td>
-<td class="r">$8.58</td>
-<td class="r">$4.59</td>
-<td>Big gap &mdash; DataForSEO groups singular/plural. Semrush counts separately.</td>
-</tr>
-<tr>
-<td>myofunctional therapy training</td>
-<td class="r">480</td>
-<td class="r">320</td>
-<td class="r">$2.03</td>
-<td class="r">$1.27</td>
-<td>Both confirm volume. Conservative estimate: 320&ndash;480/mo.</td>
-</tr>
-<tr>
-<td>airway focused dentistry</td>
-<td class="r">260</td>
-<td class="r">260</td>
-<td class="r">$2.87</td>
-<td class="r">$2.30</td>
-<td>Both sources agree on 260. High confidence.</td>
-</tr>
-<tr>
-<td>pediatric dental continuing education</td>
-<td class="r">170</td>
-<td class="r">50</td>
-<td class="r">$3.91</td>
-<td class="r">$3.37</td>
-<td>DataForSEO higher &mdash; likely includes close variants. Real range: 50&ndash;170.</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-</div>
-
-
-<!-- Negative Keywords to Exclude -->
-<div class="section">
-<h2>Negative Keywords &mdash; Search Terms to Exclude</h2>
-<div class="desc">Actual search queries from the last 30 days that triggered BRETH ads but are irrelevant. These waste budget on users who are NOT dental professionals looking for CE courses.</div>
-
-<div class="callout callout-red">
-<strong>Wasted Spend Alert: ~$720+ in 30 days on irrelevant ADHD &amp; parenting queries</strong>
-The BRETH &mdash; Search campaign is matching to broad informational queries from parents searching for ADHD help, sleep issues, and bedwetting &mdash; none of whom are dental professionals. These need to be blocked immediately.
-</div>
-
-<h3>Top Irrelevant Search Terms (Last 30 Days)</h3>
-<table>
-<thead>
-<tr>
-<th>Search Term</th>
-<th class="r">Clicks</th>
-<th class="r">Cost</th>
-<th class="r">Conv.</th>
-<th>Why Exclude</th>
-</tr>
-</thead>
-<tbody>
-<tr style="background:#fff0f0">
-<td><strong>adhd meaning</strong></td>
-<td class="r">9</td>
-<td class="r">$98.37</td>
-<td class="r">0</td>
-<td>Generic ADHD info &mdash; not dental professionals</td>
-</tr>
-<tr style="background:#fff0f0">
-<td><strong>adhd</strong></td>
-<td class="r">7</td>
-<td class="r">$62.78</td>
-<td class="r">0</td>
-<td>Extremely broad &mdash; parents Googling ADHD</td>
-</tr>
-<tr style="background:#fff0f0">
-<td><strong>symptoms of adhd in kids</strong></td>
-<td class="r">6</td>
-<td class="r">$52.51</td>
-<td class="r">0</td>
-<td>Parent query, not dental CE</td>
-</tr>
-<tr style="background:#fff0f0">
-<td><strong>what is adhd</strong></td>
-<td class="r">5</td>
-<td class="r">$51.72</td>
-<td class="r">0</td>
-<td>Informational &mdash; zero purchase intent</td>
-</tr>
-<tr style="background:#fff0f0">
-<td><strong>add</strong></td>
-<td class="r">5</td>
-<td class="r">$48.71</td>
-<td class="r">0</td>
-<td>Completely unrelated &mdash; could mean anything</td>
-</tr>
-<tr style="background:#fff0f0">
-<td><strong>adhd symptoms in kids</strong></td>
-<td class="r">5</td>
-<td class="r">$48.57</td>
-<td class="r">0</td>
-<td>Parent query &mdash; not looking for courses</td>
-</tr>
-<tr style="background:#fff0f0">
-<td><strong>adhd in a child</strong></td>
-<td class="r">2</td>
-<td class="r">$28.90</td>
-<td class="r">0</td>
-<td>Parent query at $14.45/click</td>
-</tr>
-<tr style="background:#fff0f0">
-<td><strong>adhd test for kids</strong></td>
-<td class="r">4</td>
-<td class="r">$28.57</td>
-<td class="r">0</td>
-<td>Looking for ADHD testing, not dental CE</td>
-</tr>
-<tr style="background:#fff8f0">
-<td><strong>bedwetting in kids</strong></td>
-<td class="r">2</td>
-<td class="r">$25.08</td>
-<td class="r">0</td>
-<td>Parenting concern &mdash; not dental</td>
-</tr>
-<tr style="background:#fff8f0">
-<td><strong>adhd test free kids</strong></td>
-<td class="r">2</td>
-<td class="r">$21.62</td>
-<td class="r">0</td>
-<td>&ldquo;Free&rdquo; seekers won&rsquo;t buy a $2,999 course</td>
-</tr>
-<tr style="background:#fff8f0">
-<td><strong>why is my 3 year old suddenly not sleeping through the night</strong></td>
-<td class="r">2</td>
-<td class="r">$21.00</td>
-<td class="r">0</td>
-<td>Parent sleep question, not CE professional</td>
-</tr>
-<tr style="background:#fff8f0">
-<td><strong>child adhd test online free</strong></td>
-<td class="r">2</td>
-<td class="r">$20.76</td>
-<td class="r">0</td>
-<td>Free online test seekers</td>
-</tr>
-<tr style="background:#fff8f0">
-<td><strong>toddler trouble sleeping</strong></td>
-<td class="r">2</td>
-<td class="r">$19.10</td>
-<td class="r">0</td>
-<td>Parent sleep issue &mdash; not airway professionals</td>
-</tr>
-<tr style="background:#fff8f0">
-<td><strong>does my child have adhd</strong></td>
-<td class="r">2</td>
-<td class="r">$18.49</td>
-<td class="r">0</td>
-<td>Diagnostic concern from parents</td>
-</tr>
-<tr style="background:#fff8f0">
-<td><strong>pediatric dentist near me that accepts medicaid</strong></td>
-<td class="r">1</td>
-<td class="r">$17.03</td>
-<td class="r">0</td>
-<td>Medicaid patients &mdash; not CE buyers</td>
-</tr>
-<tr style="font-weight:700;background:#ffebee">
-<td><strong>TOTAL WASTED</strong></td>
-<td class="r">56</td>
-<td class="r">$563.21</td>
-<td class="r">0</td>
-<td>Top 15 irrelevant terms alone</td>
-</tr>
-</tbody>
-</table>
-
-<h3>Suggested Negative Keyword List</h3>
-<div class="desc">Add these as campaign-level negative keywords to stop wasted spend immediately.</div>
-
-<table>
-<thead>
-<tr>
-<th>Negative Keyword</th>
-<th>Match Type</th>
-<th>Reason</th>
-</tr>
-</thead>
-<tbody>
-<tr><td><strong>adhd</strong></td><td><span class="badge b-red">BROAD</span></td><td>Blocks all ADHD queries &mdash; biggest waste category (~$500+/mo)</td></tr>
-<tr><td><strong>add</strong></td><td><span class="badge b-red">EXACT</span></td><td>Blocks &ldquo;ADD&rdquo; searches, too generic</td></tr>
-<tr><td><strong>symptoms</strong></td><td><span class="badge b-red">BROAD</span></td><td>Parent symptom searches, not professionals</td></tr>
-<tr><td><strong>test</strong></td><td><span class="badge b-orange">PHRASE</span></td><td>Blocks &ldquo;adhd test&rdquo;, &ldquo;test for kids&rdquo; etc.</td></tr>
-<tr><td><strong>quiz</strong></td><td><span class="badge b-orange">PHRASE</span></td><td>Blocks &ldquo;adhd quiz&rdquo;, &ldquo;signs quiz&rdquo; etc.</td></tr>
-<tr><td><strong>free</strong></td><td><span class="badge b-orange">PHRASE</span></td><td>No &ldquo;free&rdquo; seekers will buy a $2,999 course</td></tr>
-<tr><td><strong>bedwetting</strong></td><td><span class="badge b-red">BROAD</span></td><td>Parent concern, not dental CE</td></tr>
-<tr><td><strong>sleeping</strong></td><td><span class="badge b-orange">PHRASE</span></td><td>Parenting sleep queries, not airway professionals</td></tr>
-<tr><td><strong>toddler</strong></td><td><span class="badge b-red">BROAD</span></td><td>Parent queries about toddlers</td></tr>
-<tr><td><strong>medicaid</strong></td><td><span class="badge b-red">BROAD</span></td><td>Insurance seekers, not CE buyers</td></tr>
-<tr><td><strong>checklist</strong></td><td><span class="badge b-orange">PHRASE</span></td><td>ADHD checklists for parents</td></tr>
-<tr><td><strong>diagnosis</strong></td><td><span class="badge b-orange">PHRASE</span></td><td>Parent diagnostic queries</td></tr>
-<tr><td><strong>adults</strong></td><td><span class="badge b-orange">PHRASE</span></td><td>Course is pediatric-focused</td></tr>
-<tr><td><strong>cook children</strong></td><td><span class="badge b-blue">EXACT</span></td><td>Competitor hospital name</td></tr>
-<tr><td><strong>adventure smiles</strong></td><td><span class="badge b-blue">EXACT</span></td><td>Competitor practice</td></tr>
-<tr><td><strong>church and associates</strong></td><td><span class="badge b-blue">EXACT</span></td><td>Competitor practice</td></tr>
+<tr><td><strong>AG1 — Clinical Education</strong></td><td class="c">6</td><td class="r">2,800</td><td class="r">$6.38</td><td class="r">20%</td><td>"dental ce academy" carries the whole bucket. Most clinical-CE phrases have negligible volume — dentists search "dental ce courses," not "clinical CE."</td></tr>
+<tr><td><strong>AG2 — Practice Growth / CEO</strong></td><td class="c">7</td><td class="r">440</td><td class="r">$28.14</td><td class="r">3%</td><td>Low volume, very high CPC ($20–$54). Same audience as Scott Leune coaching. Cap daily budget tightly.</td></tr>
+<tr><td><strong>AG3 — Pediatric</strong></td><td class="c">8</td><td class="r">750</td><td class="r">$4.77</td><td class="r">5%</td><td>Pediatric airway (320/mo) is the unlock — maps directly to BRĒTH Foundations + Development tiers.</td></tr>
+<tr><td><strong>AG4 — Airway</strong></td><td class="c">8</td><td class="r">3,960</td><td class="r">$3.92</td><td class="r">28%</td><td>★ Best expansion bucket. "Airway orthodontics" (1,600) + "mouth breathing treatment" (1,600) drive the whole group.</td></tr>
+<tr><td><strong>AG5 — Myofunctional / Core CE</strong></td><td class="c">7</td><td class="r">7,080</td><td class="r">$5.49</td><td class="r">49%</td><td>v1 workhorse. Proven converters. Keep as backbone.</td></tr>
+<tr><td><strong>AG6 — Intent-Gap Placeholders</strong></td><td class="c">5</td><td class="r">0 (measured)</td><td class="r">—</td><td class="r">0%</td><td>Client-requested phrases with no measured volume. Exact-match only to catch long-tail.</td></tr>
+<tr style="font-weight:700;background:#f0f4ff"><td><strong>TOTAL</strong></td><td class="c">41</td><td class="r">14,330</td><td class="r">$5.62</td><td class="r">100%</td><td></td></tr>
 </tbody>
 </table>
 
 <div class="callout callout-green" style="margin-top:16px">
-<strong>Estimated Savings: $500&ndash;$800/month</strong>
-Adding these negative keywords should eliminate most irrelevant traffic from the BRETH &mdash; Search campaign. The ADHD cluster alone accounts for ~$500+/month in wasted clicks with zero conversions. Redirect that budget to the myofunctional therapy and airway dentistry keywords where CPC is lower and intent is higher.
+<strong>Key shift from v1:</strong>
+AG5 (Myofunctional / Core CE) was 100% of v1 volume. In v2, it's 49% — still the backbone, but AG4 (Airway) now adds 3,960 monthly searches the v1 list completely missed. That's where Justin's "airway keywords" request pays off.
 </div>
 </div>
 
+<div class="section">
+<h2>Volume & CPC Visualizations</h2>
+<div class="desc">Visual breakdown of the 28 v2 keywords with measured volume.</div>
+
+<div class="chart-row">
+<div class="chart-box"><h4>Top 15 Keywords by Monthly Search Volume</h4><canvas id="volChart" height="380"></canvas></div>
+<div class="chart-box"><h4>CPC ($) — Top 15 by Volume</h4><canvas id="cpcChart" height="380"></canvas></div>
+</div>
+
+<div class="chart-row">
+<div class="chart-box"><h4>Volume Distribution by Ad Group</h4><canvas id="agChart" height="280"></canvas></div>
+<div class="chart-box"><h4>CPC vs Volume — Efficiency Map</h4><canvas id="bubbleChart" height="280"></canvas></div>
+</div>
+</div>
+
+<div class="section">
+<h2>6-Month Trend Highlights (Oct 2025 → Mar 2026)</h2>
+<div class="desc">Biggest movers and most stable performers in the v2 list.</div>
+
+<div class="trend-grid">
+<div class="trend-card"><h4>★ Biggest v2 Unlock</h4><div class="kw">airway orthodontics</div><div class="vol" style="color:var(--accent)">2,400 → 2,400 <span style="font-size:14px">→ Stable high</span></div><div class="detail">Sat at 1,900 for most of Q4, jumped to 2,400 in March — 1,600 avg was missed entirely in v1</div><canvas id="trend1" height="60"></canvas></div>
+<div class="trend-card"><h4>★ Big Pediatric Find</h4><div class="kw">pediatric airway dentistry</div><div class="vol" style="color:var(--accent)">260 → 390 <span style="font-size:14px">▲ 50%</span></div><div class="detail">Trending up 50% — Justin's exact clinician-facing target</div><canvas id="trend2" height="60"></canvas></div>
+<div class="trend-card"><h4>Biggest Gainer</h4><div class="kw">dental continuing education</div><div class="vol" style="color:var(--accent)">720 → 1,900 <span style="font-size:14px">▲ 164%</span></div><div class="detail">Q1 2026 CE renewal spike — budget accordingly each January</div><canvas id="trend3" height="60"></canvas></div>
+<div class="trend-card"><h4>Pediatric Airway Subtrend</h4><div class="kw">pediatric sleep disordered breathing</div><div class="vol" style="color:var(--accent)">30 → 170 <span style="font-size:14px">▲ 467%</span></div><div class="detail">Huge 6-month ramp — awareness trend worth riding</div><canvas id="trend4" height="60"></canvas></div>
+<div class="trend-card"><h4>Strong Climber</h4><div class="kw">airway focused orthodontics</div><div class="vol" style="color:var(--accent)">320 → 590 <span style="font-size:14px">▲ 84%</span></div><div class="detail">Up 84% from baseline — growing category awareness</div><canvas id="trend5" height="60"></canvas></div>
+<div class="trend-card"><h4>Best CPC/Volume Combo</h4><div class="kw">mouth breathing treatment</div><div class="vol" style="color:var(--blue)">1,600 <span style="font-size:14px">@ $1.29 CPC</span></div><div class="detail">1,600/mo at $1.29 CPC — best efficiency in the whole list</div><canvas id="trend6" height="60"></canvas></div>
+</div>
+</div>
+
+<div class="section">
+<h2>CPC Risk Analysis (v2)</h2>
+<div class="desc">Updated risk tiering — note AG2 (Practice Growth) replaces v1's "dental training/course" as the new high-risk zone.</div>
+
+<table>
+<thead><tr><th>Risk Level</th><th>Keywords</th><th class="r">CPC Range</th><th class="r">Combined Volume</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td><span class="badge b-red">HIGH RISK</span></td><td>dental practice growth ($53.93), increase dental practice revenue ($38.43), grow dental practice ($30.01), dental practice coaching ($20.97)</td><td class="r">$21–$54</td><td class="r">190</td><td>Cap AG2 daily budget at $25–$50. Pause individual keywords if CPA > $300.</td></tr>
+<tr><td><span class="badge b-orange">MODERATE</span></td><td>hands on dental ce courses ($9.93), dental continuing education ($8.95), dental ce course/courses ($8.58), dental practice management course ($8.70), pediatric airway dentistry ($7.21), airway focused orthodontics ($6.79), airway centric dentistry ($6.25), live dental ce ($5.91), airway orthodontics ($5.73), pediatric dentistry ce courses ($5.59), dental ce academy ($5.53)</td><td class="r">$5.50–$10</td><td class="r">11,420</td><td>Standard monitoring. Expected range for dental CE + airway.</td></tr>
+<tr><td><span class="badge b-green">LOW RISK</span></td><td>All myofunctional ($0.51–$2.03), airway focused dentistry ($2.87), pediatric sleep disordered breathing ($3.14), pediatric dental continuing education ($3.91), pediatric dentist course ($2.15), mouth breathing treatment ($1.29)</td><td class="r">$0.51–$3.91</td><td class="r">4,860</td><td>Best ROI zone. Maximize spend here first.</td></tr>
+</tbody>
+</table>
+
+<div class="callout callout-orange">
+<strong>⚠ Budget warning on AG2:</strong> The practice-growth bucket has the lowest volume (440/mo combined) and the highest CPC (avg $28). It targets Scott Leune's exact audience so it's strategic, but a single click on "dental practice growth" costs $54. Start AG2 with a small daily cap and separate budget so it doesn't cannibalize the productive airway + myofunctional spend.
+</div>
+</div>
+
+<div class="section">
+<h2>DataForSEO vs Semrush Variance</h2>
+<div class="desc">Where the two sources disagree, and what we trust.</div>
+
+<table>
+<thead><tr><th>Keyword</th><th class="r">DataForSEO</th><th class="r">Semrush</th><th>Variance Note</th></tr></thead>
+<tbody>
+<tr><td><strong>dental ce course</strong></td><td class="r">2,400</td><td class="r">140</td><td>17× gap. Trust DataForSEO — pulls Google Ads auction data directly.</td></tr>
+<tr><td><strong>dental ce courses</strong> (plural)</td><td class="r">2,400</td><td class="r">1,600</td><td>Closer agreement on plural form. Both confirm it's a top term.</td></tr>
+<tr><td><strong>myofunctional therapy training</strong></td><td class="r">480</td><td class="r">320</td><td>Normal variance. Both confirm real demand.</td></tr>
+<tr><td><strong>airway focused dentistry</strong></td><td class="r">260</td><td class="r">260</td><td>Exact match across tools — most reliable data point.</td></tr>
+<tr><td><strong>pediatric dental continuing education</strong></td><td class="r">170</td><td class="r">50</td><td>3× gap. DataForSEO is primary source for campaign planning.</td></tr>
+<tr><td><strong>pediatric sleep apnea treatment</strong></td><td class="r">—</td><td class="r">70</td><td>Only Semrush has data. Kept as exact-match.</td></tr>
+<tr><td><strong>pediatric orthodontic course</strong></td><td class="r">—</td><td class="r">30</td><td>Semrush shows 30/mo. Below threshold to prioritize.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>Recommended Next Steps</h2>
+<div class="desc">Campaign build priorities based on v2 data.</div>
+
+<div class="callout callout-green"><strong>1. Launch AG4 (Airway) as the highest-priority new bucket</strong>
+3,960 monthly volume at $3.92 avg CPC. "Airway orthodontics" (1,600) + "mouth breathing treatment" (1,600) are the two biggest unlocks over v1. Build a dedicated airway landing page pointing to the BRĒTH Expansion / Comprehensive tiers.</div>
+
+<div class="callout callout-blue"><strong>2. Expand AG3 (Pediatric) to match BRĒTH Foundations/Development positioning</strong>
+Pediatric airway dentistry (320) + pediatric sleep disordered breathing (70) give Justin's clinician-facing pediatric story. Landing page should feature BRĒTH's kid-specific case studies.</div>
+
+<div class="callout callout-purple"><strong>3. Run AG2 (Practice Growth) as a small-budget test — NOT primary spend</strong>
+Only 440 monthly volume across the whole group but the highest CPC. Worth testing $20/day for 30 days to measure whether CEO-coaching-audience dentists actually convert on the BRĒTH procedure pitch. If CPA > $500 after 30 days, pause.</div>
+
+<div class="callout callout-orange"><strong>4. Discuss AG6 (Intent-Gap Placeholders) with Justin</strong>
+The "add procedures to dental practice" / "new dental procedures to offer" angle is strategically right but dentists don't type those phrases. Recommend capturing that intent via AG4 (Airway) landing page framing — headline like "Add Airway to Your Practice — New Revenue Procedure + CE Included" — rather than chasing non-existent search volume.</div>
+
+<div class="callout callout-red"><strong>5. Do NOT re-enable v1's "dental training" / "dental course"</strong>
+Still $14–$15 CPC with low intent. v1 flagged HIGH RISK and v2 keeps them out.</div>
+</div>
 
 <div class="footer">
-Prepared by Sidekick Digital &middot; April 14, 2026 &middot; Data sources: DataForSEO Keyword Data API (Google Ads), Semrush Keyword Overview &middot; Location: United States &middot; All volumes are monthly averages
+BRĒTH™ Keyword Research Dashboard v2 — Sidekick Digital — Prepared April 16, 2026<br>
+Data: DataForSEO Keyword Data API (Google Ads source) + Semrush Keyword Overview (clickstream source)<br>
+v1 reference: April 14, 2026 — 15 keywords, 6,670 volume, 1 ad group
+</div>
+
 </div>
 
 <script>
-const KW_LABELS = [
-  'dental ce course','dental cont. ed','dental course','dental training',
-  'myofunc. training','myofunc. course','myofunc. cert.',
-  'airway focused','ped. dental CE','orofacial cert.',
-  'ped. dentistry CE','dental seminar','ped. dentist course','ped. dent. training'
+const topKWs = [
+  {kw:'dental ce course', vol:2400, cpc:8.58, ag:'AG5'},
+  {kw:'dental ce courses', vol:2400, cpc:8.58, ag:'AG5'},
+  {kw:'dental ce academy', vol:2400, cpc:5.53, ag:'AG1'},
+  {kw:'airway orthodontics', vol:1600, cpc:5.73, ag:'AG4'},
+  {kw:'mouth breathing treatment', vol:1600, cpc:1.29, ag:'AG4'},
+  {kw:'dental continuing education', vol:1000, cpc:8.95, ag:'AG5'},
+  {kw:'myofunctional therapy training', vol:480, cpc:2.03, ag:'AG5'},
+  {kw:'myofunctional therapy course', vol:480, cpc:2.03, ag:'AG5'},
+  {kw:'airway focused orthodontics', vol:390, cpc:6.79, ag:'AG4'},
+  {kw:'pediatric airway dentistry', vol:320, cpc:7.21, ag:'AG3'},
+  {kw:'myofunctional therapy certification', vol:320, cpc:1.50, ag:'AG5'},
+  {kw:'live dental ce', vol:320, cpc:5.91, ag:'AG1'},
+  {kw:'airway focused dentistry', vol:260, cpc:2.87, ag:'AG4'},
+  {kw:'dental practice management course', vol:210, cpc:8.70, ag:'AG2'},
+  {kw:'orofacial myology certification', vol:170, cpc:0.51, ag:'AG5'}
 ];
-const VOLUMES = [2400,1000,590,590,480,480,320,260,170,170,110,50,40,20];
-const CPCS = [8.58,8.95,14.40,15.39,2.03,2.03,1.50,2.87,3.91,0.51,5.59,0,2.15,0];
 
-// Color code by category
-const BAR_COLORS = [
-  '#1565c0','#1565c0','#1565c0','#1565c0', // Dental CE
-  '#2e7d32','#2e7d32','#2e7d32', // Myofunctional
-  '#f57c00', // Airway
-  '#6a1b9a','#2e7d32', // Peds CE, Orofacial
-  '#6a1b9a','#1565c0','#6a1b9a','#6a1b9a' // Peds CE, Dental, Peds
-];
+const agColors = {'AG1':'#1565c0','AG2':'#6a1b9a','AG3':'#f57c00','AG4':'#2e7d32','AG5':'#1a2744','AG6':'#c62828'};
 
-const CPC_COLORS = CPCS.map(c => c >= 10 ? '#c62828' : c >= 5 ? '#f57c00' : c > 0 ? '#2e7d32' : '#ccc');
-
-// Volume Bar Chart
 new Chart(document.getElementById('volChart'), {
   type:'bar',
-  data:{labels:KW_LABELS,datasets:[{data:VOLUMES,backgroundColor:BAR_COLORS,borderRadius:4}]},
-  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{display:true,text:'Monthly Volume'}},y:{ticks:{font:{size:11}}}}}
+  data:{labels:topKWs.map(k=>k.kw),datasets:[{label:'Monthly Volume',data:topKWs.map(k=>k.vol),backgroundColor:topKWs.map(k=>agColors[k.ag]),borderRadius:4}]},
+  options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}
 });
 
-// CPC Bar Chart
 new Chart(document.getElementById('cpcChart'), {
   type:'bar',
-  data:{labels:KW_LABELS,datasets:[{data:CPCS,backgroundColor:CPC_COLORS,borderRadius:4}]},
-  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{display:true,text:'CPC ($)'}},y:{ticks:{font:{size:11}}}}}
+  data:{labels:topKWs.map(k=>k.kw),datasets:[{label:'CPC ($)',data:topKWs.map(k=>k.cpc),backgroundColor:topKWs.map(k=>{if(k.cpc>=8)return '#c62828';if(k.cpc>=4)return '#f57c00';return '#2e7d32';}),borderRadius:4}]},
+  options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,ticks:{font:{size:10},callback:v=>'$'+v}},y:{ticks:{font:{size:10}}}}}
 });
 
-// Category Donut
-new Chart(document.getElementById('catChart'), {
+new Chart(document.getElementById('agChart'), {
   type:'doughnut',
-  data:{
-    labels:['Dental CE (Broad)','Myofunctional Therapy','Pediatric Dental CE','Airway Dentistry'],
-    datasets:[{data:[4800,1450,160,260],backgroundColor:['#1565c0','#2e7d32','#6a1b9a','#f57c00'],borderWidth:2,borderColor:'#fff'}]
-  },
-  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}
+  data:{labels:['AG5 Myofunctional/Core CE','AG4 Airway','AG1 Clinical Education','AG3 Pediatric','AG2 Practice Growth','AG6 Intent-Gap'],datasets:[{data:[7080,3960,2800,750,440,0],backgroundColor:[agColors.AG5,agColors.AG4,agColors.AG1,agColors.AG3,agColors.AG2,agColors.AG6]}]},
+  options:{plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}
 });
 
-// Bubble Chart: CPC vs Volume
 new Chart(document.getElementById('bubbleChart'), {
   type:'bubble',
-  data:{
-    datasets:[
-      {label:'Dental CE',data:[{x:8.58,y:2400,r:18},{x:8.95,y:1000,r:14},{x:14.40,y:590,r:10},{x:15.39,y:590,r:10},{x:0,y:50,r:5},{x:5.59,y:110,r:7}],backgroundColor:'rgba(21,101,192,0.4)',borderColor:'#1565c0'},
-      {label:'Myofunctional',data:[{x:2.03,y:480,r:12},{x:2.03,y:480,r:12},{x:1.50,y:320,r:10},{x:0.51,y:170,r:8}],backgroundColor:'rgba(46,125,50,0.4)',borderColor:'#2e7d32'},
-      {label:'Airway',data:[{x:2.87,y:260,r:9}],backgroundColor:'rgba(245,124,0,0.4)',borderColor:'#f57c00'},
-      {label:'Pediatric CE',data:[{x:3.91,y:170,r:8},{x:2.15,y:40,r:5},{x:0,y:20,r:4}],backgroundColor:'rgba(106,27,154,0.4)',borderColor:'#6a1b9a'}
-    ]
-  },
-  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{x:{title:{display:true,text:'CPC ($)'},beginAtZero:true},y:{title:{display:true,text:'Monthly Volume'},beginAtZero:true}}}
+  data:{datasets:topKWs.map(k=>({label:k.kw,data:[{x:k.cpc,y:k.vol,r:Math.max(5,Math.sqrt(k.vol)/4)}],backgroundColor:agColors[k.ag]+'99',borderColor:agColors[k.ag]}))},
+  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=topKWs[ctx.datasetIndex];return d.kw+': '+d.vol+' vol, $'+d.cpc+' CPC'}}}},scales:{x:{title:{display:true,text:'CPC ($)',font:{size:11}},ticks:{callback:v=>'$'+v}},y:{title:{display:true,text:'Monthly Volume',font:{size:11}},beginAtZero:true}}}
 });
 
-// Trend mini-charts
-function miniTrend(id, data, color) {
-  new Chart(document.getElementById(id), {
-    type:'line',
-    data:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],datasets:[{data:data,borderColor:color,backgroundColor:color+'22',fill:true,tension:0.3,pointRadius:3,pointBackgroundColor:color}]},
-    options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{display:true,ticks:{font:{size:9}}},y:{display:false}},elements:{line:{borderWidth:2}}}
-  });
-}
-miniTrend('trend1',[720,480,720,1600,1900,1900],'#2e7d32');
-miniTrend('trend2',[480,390,320,480,390,480],'#1565c0');
-miniTrend('trend3',[320,320,260,320,390,480],'#2e7d32');
-miniTrend('trend4',[140,170,110,90,70,70],'#c62828');
-miniTrend('trend5',[2400,1900,1900,2400,2400,1900],'#1565c0');
-miniTrend('trend6',[260,140,210,210,170,260],'#f57c00');
+const sparkOpts={responsive:true,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}},elements:{point:{radius:0}}};
+const mkSpark=(id,data,col)=>new Chart(document.getElementById(id),{type:'line',data:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],datasets:[{data,borderColor:col,backgroundColor:col+'22',fill:true,tension:0.3,borderWidth:2}]},options:sparkOpts});
+
+mkSpark('trend1',[2400,1900,1900,1900,1900,2400],'#2e7d32');
+mkSpark('trend2',[260,320,260,320,320,390],'#2e7d32');
+mkSpark('trend3',[720,480,720,1600,1900,1900],'#2e7d32');
+mkSpark('trend4',[30,40,30,90,110,170],'#2e7d32');
+mkSpark('trend5',[320,260,260,480,590,590],'#2e7d32');
+mkSpark('trend6',[1600,1300,1000,1000,1000,1000],'#1565c0');
 </script>
 
 </body>
